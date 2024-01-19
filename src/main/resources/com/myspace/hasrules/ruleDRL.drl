@@ -1,0 +1,125 @@
+package com.myspace.hasrules;
+
+import com.myspace.hasrules.ruleBO;
+
+ruleflow-group "ruleDRL"
+rule "Row 1 ruleTable"
+	when
+		$ruleBO : ruleBO( productName == "Classic Saver" ,  inputName == "Member Type" , ruleName == "Main Member Contribution" , memberType == "Main Member" )
+	then
+	
+		$ruleBO.setOutputValue( 3045 );
+end
+
+rule "Row 2 ruleTable"
+	when
+		$ruleBO : ruleBO( productName == "Classic Saver" ,  inputName == "Member Type" , ruleName == "Adult Dependant Contribution" , memberType == "Main Member" )
+	then
+	
+		$ruleBO.setOutputValue( 2402 );
+end
+
+rule "Row 3 ruleTable"
+	when
+		$ruleBO : ruleBO( productName == "Classic Saver" ,  inputName == "Member Type" , ruleName == "Child Dependant Contribution" , memberType == "Main Member"  )
+	then
+	
+		$ruleBO.setOutputValue( 1220 );
+end
+
+rule "Row 4 ruleTable"
+	when
+		$ruleBO : ruleBO( productName == "Classic Saver" ,  inputName == "Member Type" , ruleName == "Main Member MSA Contribution" , memberType == "Main Member"  )
+	then
+	
+		$ruleBO.setOutputValue( 1015 );
+end
+
+rule "Row 5 ruleTable"
+	when
+		$ruleBO : ruleBO( productName == "Classic Saver" ,  inputName == "Member Type" , ruleName == "Adult Dependant MSA Contribution" , memberType == "Main Member"  )
+	then
+	
+		$ruleBO.setOutputValue( 800 );
+end
+
+rule "Row 6 ruleTable"
+	when
+		$ruleBO : ruleBO( productName == "Classic Saver" , inputName == "Member Type" , ruleName == "Child Dependant MSA Contribution" , memberType == "Main Member"  )
+	then
+	
+		$ruleBO.setOutputValue( 406 );
+end
+
+rule "Row 7 ruleTable"
+	when
+		$ruleBO : ruleBO( productName == "KeyCare Plus" , inputName == "Member Type" , ruleName == "Main Member Contribution" , memberType == "Main Member" , salary >= 0,  salary <= 9450 )
+	then
+	
+		$ruleBO.setOutputValue( 1489 );
+end
+
+rule "Row 8 ruleTable"
+	when
+		$ruleBO : ruleBO( productName == "KeyCare Plus" , inputName == "Member Type" , ruleName == "Main Member Contribution" , memberType == "Main Member" ,salary > 9450,  salary <= 15250 )
+	then
+	
+		$ruleBO.setOutputValue( 2047 );
+end
+
+rule "Row 9 ruleTable"
+	when
+		$ruleBO : ruleBO( productName == "KeyCare Plus" , inputName == "Member Type" , ruleName == "Main Member Contribution" , memberType == "Main Member" , salary > 15250 )
+	then
+	
+		$ruleBO.setOutputValue( 3023 );
+end
+
+
+rule "Row 10 ruleTable"
+	when
+		$ruleBO : ruleBO( productName == "KeyCare Plus" , benefitLevel == "Policy" , inputName == "Member Type" , ruleName == "Adult Dependant Contribution" , memberType == "Main Member" ,salary >= 0,  salary <= 9450 )
+	then
+	
+		$ruleBO.setOutputValue( 1489 );
+end
+
+rule "Row 11 ruleTable"
+	when
+		$ruleBO : ruleBO( productName == "KeyCare Plus" ,  inputName == "Member Type" , ruleName == "Adult Dependant Contribution" , memberType == "Main Member" ,salary > 9450,  salary <= 15250)
+	then
+	
+		$ruleBO.setOutputValue( 2047 );
+end
+
+rule "Row 12 ruleTable"
+	when
+		$ruleBO : ruleBO( productName == "KeyCare Plus" , inputName == "Member Type" , ruleName == "Adult Dependant Contribution" , memberType == "Main Member" , salary > 15250 )
+	then
+		
+		$ruleBO.setOutputValue( 3023 );
+end
+
+rule "Row 13 ruleTable"
+	when
+		$ruleBO : ruleBO( productName == "KeyCare Plus" ,  inputName == "Member Type" , ruleName == "Child Dependant Contribution" , memberType == "Main Member" ,salary >= 0,  salary <= 9450 )
+	then
+	
+		$ruleBO.setOutputValue( 542 );
+end
+
+rule "Row 14 ruleTable"
+	when
+		$ruleBO : ruleBO( productName == "KeyCare Plus" ,  inputName == "Member Type" , ruleName == "Child Dependant Contribution" , memberType == "Main Member" ,salary > 9450,  salary <= 15250 )
+	then
+		
+		$ruleBO.setOutputValue( 577 );
+end
+
+rule "Row 15 ruleTable"
+	when
+		$ruleBO : ruleBO( productName == "KeyCare Plus" , inputName == "Member Type" , ruleName == "Child Dependant Contribution" , memberType == "Main Member" , salary > 15250 )
+	then
+	
+		$ruleBO.setOutputValue( 809 );
+end

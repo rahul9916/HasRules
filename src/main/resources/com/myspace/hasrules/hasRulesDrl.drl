@@ -1,0 +1,458 @@
+package com.myspace.hasrules;
+import com.myspace.hasrules.hasRulesBo;
+
+ruleflow-group "hasRulesDrl"
+
+rule "Hospital Choice - Any choice "
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Choice" && benefitLevel=="Hospital" && subBenefitLevel=="Choice of Hospital" && outputName=="In Hospital Cover" && outputValue=="Covered" && inputName=="Choice of Hospital" && inputValue=="Any choice");
+
+then
+$hasRulesBo.setScoringValue(5);
+end;
+
+rule "Hospital Choice - Comprehensive Network Hospitals"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Choice"  && benefitLevel=="Hospital" && subBenefitLevel=="Choice of Hospital" && outputName=="In Hospital Cover" && outputValue=="Covered" && inputName=="Choice of Hospital" && inputValue=="Comprehensive Network Hospitals")
+
+then
+$hasRulesBo.setScoringValue(4);
+end;
+
+
+rule "Hospital Choice - Restrictive Network Hospitals"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Choice" && benefitLevel=="Hospital" && subBenefitLevel=="Choice of Hospital" && outputName=="In Hospital Cover" && outputValue=="Covered" && inputName=="Choice of Hospital" && inputValue=="Restrictive Network Hospitals")
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+
+rule "Hospital Choice - Very Restrictive Network Hospitals"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Choice" && benefitLevel=="Hospital" && subBenefitLevel=="Choice of Hospital" && outputName=="In Hospital Cover" && outputValue=="Covered" && inputName=="Choice of Hospital" && inputValue=="Very Restrictive Network Hospitals")
+
+then
+$hasRulesBo.setScoringValue(2);
+end;
+
+
+rule "Hospital Choice - State Only"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Choice" && benefitLevel=="Hospital" && subBenefitLevel=="Choice of Hospital" && outputName=="In Hospital Cover" && outputValue=="Covered" && inputName=="Choice of Hospital" && inputValue=="State Only")
+
+then
+$hasRulesBo.setScoringValue(1);
+end;
+
+rule "Hospital Limit - Unlimited"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Limit" && benefitLevel=="Hospital" && subBenefitLevel=="Hospital Limit" && outputName=="Limit" && outputValue=="Unlimited")
+
+then
+$hasRulesBo.setScoringValue(5);
+
+end;
+
+rule "Hospital Limit - Capped"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Limit" && benefitLevel=="Hospital" && subBenefitLevel=="Hospital Limit" && outputName=="Limit" && outputValue=="Capped")
+
+then
+
+$hasRulesBo.setScoringValue(3);
+end;
+
+rule "Hospital Limit"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Limit" && subBenefitLevel=="Hospital Limit" && inputValue=="No Benefit")
+
+then
+$hasRulesBo.setScoringValue(0);
+end;
+
+
+rule "Hospital Benefit Co-payments - No co-payments"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Benefit Co-payments" && subBenefitLevel=="Hospital Co-Payments/ Deductables" && benefitLevel=="Hospital" && outputName=="Benefits with Co-payments" && outputValue=="No co-payments" && inputName=="Admission" && inputValue=="Elective")
+
+then
+$hasRulesBo.setScoringValue(5);
+end;
+
+
+
+rule "level94"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Benefit Co-payments" && benefitLevel=="Hospital" && subBenefitLevel=="Hospital Co-Payments/ Deductables"  && outputName=="Benefits with Co-payments" && outputValue=="Co-pay on specialised radiology and / or scopes" && inputName=="Admission" && inputValue=="Elective")
+
+then
+$hasRulesBo.setScoringValue(4);
+end;
+
+rule "level95"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Benefit Co-payments" && benefitLevel=="Hospital" && subBenefitLevel=="Hospital Co-Payments/ Deductables" && outputName=="Benefits with Co-payments" && outputValue=="Co-pay on specialised radiology and / or scopes and a few others" && inputName=="Admission" && inputValue=="Elective")
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+
+rule "level96"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Benefit Co-payments" && benefitLevel=="Hospital" && subBenefitLevel=="Hospital Co-Payments/ Deductables" && outputName=="Benefits with Co-payments" && outputValue=="Co-pays on comprehensive list" && inputName=="Admission" && inputValue=="Elective")
+
+then
+$hasRulesBo.setScoringValue(2);
+end;
+
+
+rule "level44"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="27");
+
+then
+$hasRulesBo.setScoringValue(2);
+end;
+
+
+rule "level45"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="28");
+
+then
+$hasRulesBo.setScoringValue(2);
+end;
+
+
+rule "level46"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="30");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+rule "level47"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="31");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+
+rule "level48"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="32");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+rule "level49"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="33");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+rule "level50"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="34");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+
+
+rule "level52"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="36");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+rule "level53"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="39");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+
+rule "level543"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="41");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+rule "level55"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="43");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+
+rule "level56"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="44");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+rule "level57"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="45");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+rule "level58"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="46");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+rule "level59"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="47");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+rule "level60"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="49");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+
+rule "level61"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="54");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+
+rule "level62"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="55");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+
+
+rule "level63"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="56");
+
+then
+$hasRulesBo.setScoringValue(4);
+end;
+
+
+rule "level64"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="59");
+
+then
+$hasRulesBo.setScoringValue(4);
+end;
+
+
+rule "level65"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="60");
+
+then
+$hasRulesBo.setScoringValue(4);
+end;
+
+
+rule "level66"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="63");
+
+then
+$hasRulesBo.setScoringValue(5);
+end;
+
+rule "level67"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="64");
+
+then
+$hasRulesBo.setScoringValue(5);
+end;
+
+
+rule "level68"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic"&& subBenefitLevel=="No of conditions covered"  && outputName=="Chronic Conditions Covered" && outputValue=="69");
+
+then
+$hasRulesBo.setScoringValue(5);
+end;
+
+
+rule "level69"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="72");
+
+then
+$hasRulesBo.setScoringValue(5);
+end;
+
+rule "level70"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Chronic Conditions Covered" && benefitLevel=="Chronic" && subBenefitLevel=="No of conditions covered" && outputName=="Chronic Conditions Covered" && outputValue=="82");
+
+then
+$hasRulesBo.setScoringValue(5);
+end;
+
+
+rule "level71"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Exclusions" && benefitLevel=="Hospital" && subBenefitLevel=="Hospital Exclusion"  && outputName=="In Hospital Cover" && outputValue=="Excluded" && inputName=="Type of Exclusions" && inputValue=="Standard exclusions");
+
+then
+$hasRulesBo.setScoringValue(5);
+end;
+
+
+rule "level72"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Exclusions" && benefitLevel=="Hospital" && subBenefitLevel=="Hospital Exclusion" && outputName=="In Hospital Cover" && outputValue=="Excluded" && inputName=="Type of Exclusions" && inputValue=="Standard + short list of exclusions");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+rule "level73"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Exclusions" && benefitLevel=="Hospital" && subBenefitLevel=="Hospital Exclusion" && outputName=="In Hospital Cover" && outputValue=="Excluded" && inputName=="Type of Exclusions"&& inputValue=="Standard + comprehensive list of exclusions");
+
+then
+$hasRulesBo.setScoringValue(1);
+end;
+
+rule "level74"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Specialist Re-imbursement Rate" && benefitLevel=="Hospital" && subBenefitLevel=="Specialist accounts paid at"  && outputName=="Specialist Re-imbursement Rate" && outputValue=="1" && inputName=="Agreement" && inputValue=="No");
+
+then
+$hasRulesBo.setScoringValue(1);
+end;
+
+
+rule "level75"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Specialist Re-imbursement Rate" && benefitLevel=="Hospital" && subBenefitLevel=="Specialist accounts paid at"  && outputName=="Specialist Re-imbursement Rate" && outputValue=="1.5" && inputName=="Agreement" && inputValue=="No");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
+
+
+rule "level76"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Specialist Re-imbursement Rate" && benefitLevel=="Hospital" && subBenefitLevel=="Specialist accounts paid at"  && outputName=="Specialist Re-imbursement Rate" && outputValue=="2" && inputName=="Agreement" && inputValue=="No");
+
+then
+$hasRulesBo.setScoringValue(4);
+end;
+
+rule "level77"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Hospital Specialist Re-imbursement Rate" && benefitLevel=="Hospital" && subBenefitLevel=="Specialist accounts paid at" && outputName=="Specialist Re-imbursement Rate" && outputValue=="3" && inputName=="Agreement" && inputValue=="No");
+
+then
+$hasRulesBo.setScoringValue(5);
+end;
+
+
+rule "level79"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Choice of Provider" && benefitLevel=="Day 2 Day" && subBenefitLevel=="Specialist accounts paid at" && outputName=="Day 2 Day Cover"  && outputValue=="Covered" && inputName=="Choice of Provider" && inputValue=="Free choice - any provider");
+
+then
+$hasRulesBo.setScoringValue(5);
+end;
+
+rule "level80"
+
+when 
+$hasRulesBo:hasRulesBo(scoreName=="Choice of Provider" && benefitLevel=="Day 2 Day" && subBenefitLevel=="Specialist accounts paid at" && outputName=="Day 2 Day Cover" && outputValue=="Covered" && inputName=="Choice of Provider"&& inputValue=="Provider network or specified clinics");
+
+then
+$hasRulesBo.setScoringValue(3);
+end;
